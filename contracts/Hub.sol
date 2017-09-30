@@ -19,34 +19,40 @@ contract Hub is LoggingErrors {
    * Data Structures
    */
   // Define a user object, struct, for the attributes you wish users to have
-  /*struct User_ {
+  struct User_ {
     string userName_;
     string position_;
     string location_;
     State_ state_;
-  }*/
+  }
 
   // Define a resource object, struct, for the attributes you wish resources to hold
-  /*struct Resource_ {
+  struct Resource_ {
     string url_;
     address user_; // user that created this resource
     uint reputation_; // # of likes, shares, etc.
     uint addedAt_; // Block number when this resource was added
     State_ state_;
-  }*/
+  }
 
   // A State enum to define the current state of an object
-  /*enum State_ { doesNotExist, active, inactive, terminated }*/
+  enum State_ { doesNotExist, active, inactive, terminated }
 
   /**
    * Storage
    */
-  /*address public owner_; // owner EOA
+  address public owner_; // owner EOA
   address public token_; // token contract
-  bytes32[] public resourceIds_;  // hash of url used to lookup its data
+
+  // Array of resources ids, hash of the url
+  bytes32[] public resourceIds_;
+  // Map the resource ids to its associated data
   mapping(bytes32 => Resource_) public resources_;
-  address[] public users_; // used for user lookup and retrieval
-  mapping(address => User_) public userData_;*/
+
+  // Array of user ids
+  address[] public users_;
+  // Lookup user info based on id
+  mapping(address => User_) public userData_;
 
   /**
    * Events
@@ -62,8 +68,8 @@ contract Hub is LoggingErrors {
    * @param _token The blg token contract.
    */
   function Hub(address _token) {
-    /*token_ = _token;
-    owner_ = msg.sender;*/
+    token_ = _token;
+    owner_ = msg.sender;
   }
 
   /**

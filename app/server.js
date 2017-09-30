@@ -11,7 +11,7 @@ app.use(express.static('client'))
 
 // Default Home route
 app.get('/', (req, res) => {
-   res.sendFile( __dirname + "/client/" + "home.html" )
+   res.sendFile( __dirname + '/client/' + 'index.html' )
 })
 
 const server = app.listen(8081, () => {
