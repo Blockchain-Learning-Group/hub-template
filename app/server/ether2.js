@@ -24,6 +24,7 @@ let token
 
 // Default account to send txs
 const owner = web3.eth.accounts[0]
+let totalSupply
 
 initHub()
 
@@ -38,6 +39,17 @@ async function initHub () {
   if (argv.token) {
     token = await Token.at(argv.token)
     console.log('Token object created. Address: ' + token.address)
+
+    // Get the total supply of the token
+    totalSupply = (await token.totalSupply()).toNumber()
+    console.log('Total Supply: ' + totalSupply)
+  }
+
+  // Load data for rapid response to client connections
+  if (token) {
+    /*
+      TODO: Load token data and create listeners
+     */
   }
 
   console.log('Server ready!')

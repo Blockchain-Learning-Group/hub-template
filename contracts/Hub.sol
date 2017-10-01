@@ -57,11 +57,8 @@ contract Hub is LoggingErrors {
   /**
    * Events
    */
-   /*event LogResourceAdded(address user, string resourceUrl, uint blockNumber);
-   event LogResourceRemoved(string resourceUrl);
-   event LogResourceLiked(string resourceUrl);
+   event LogResourceAdded(address user, string resourceUrl, uint blockNumber);
    event LogUserAdded(address user);
-   event LogUserRemoved(address user);*/
 
   /**
    * @dev CONSTRUCTOR - Set the address of the _blgToken
@@ -81,33 +78,35 @@ contract Hub is LoggingErrors {
    * @param _resourceUrl The url of the resource to be added.
    * @return Success of the transaction.
    */
-  function addResource (string _resourceUrl)
+  function addResource(string _resourceUrl)
     external
     returns (bool)
   {
-    // 1 == active as per State_
-    /*if (userData_[msg.sender].state_ != State_.active)
+    // Confirm the user adding the resource is active and therefore valid
+    if (userData_[msg.sender].state_ != State_.active)
       return error('User is not active, Hub.addResource()');
 
+    // Resource cannot be empty!
     if (bytes(_resourceUrl).length == 0)
       return error('Invlaid empty resource, Hub.addResource()');
 
-    // Check if this id already exists.
+    // Generate the url id, the hash of it, and check if this id already exists.
     bytes32 id = keccak256(_resourceUrl);
-
     if (resources_[id].state_ != State_.doesNotExist)
       return error('Resource already exists, Hub.addResource()');
 
-    // BLG not entitled to tokens for resource contribution
-    if (msg.sender != owner_) {
-      // Mint the reward for this user
-      bool minted = BLG(token_).mint(msg.sender, RESOURCE_REWARD);
+    // Mint tokens to the user, specify the resource reward in number of tokens
+    bool minted = Token(token_).mint(msg.sender, 1000);
 
+    // Confirm tokens we minted successfully
     if (!minted)
-      return error('Unable to mint BLG tokens, Hub.addResource()');
-    }
+      return error('Unable to mint tokens, Hub.addResource()');
 
-    Resource_ memory resource = Resource_({
+    // Append the resource's id, used for lookup later
+    resourceIds_.push(id);
+
+    // Create the resource object in storage, accessible by its id
+    resources_[id] = Resource_({
       url_: _resourceUrl,
       user_: msg.sender,
       reputation_: 0,
@@ -115,10 +114,7 @@ contract Hub is LoggingErrors {
       state_: State_.active
     });
 
-    resourceIds_.push(id);
-    resources_[id] = resource;
-
-    LogResourceAdded(msg.sender, _resourceUrl, block.number);*/
+    LogResourceAdded(msg.sender, _resourceUrl, block.number);
 
     return true;
   }
@@ -131,7 +127,7 @@ contract Hub is LoggingErrors {
    * @param _location Geographic location.
    * @return Success of the transaction.
    */
-  function addUser (
+  function addUser(
     address _userEOA,
     string _userName,
     string _position,
@@ -140,14 +136,19 @@ contract Hub is LoggingErrors {
     external
     returns (bool)
   {
-    /*if (msg.sender != owner_)
-      return error('msg.sender != blg, Hub.addUser()');
+    // Only the owner may add users
+    if (msg.sender != owner_)
+      return error('msg.sender != owner, Hub.addUser()');
 
+    // User does not exist currently, check the state enum
     if (userData_[_userEOA].state_ != State_.doesNotExist)
       return error('User already exists, Hub.addUser()');
 
+    // Add this user's identifier to the array
     users_.push(_userEOA);
 
+    // Add the user's data which may be retrieved by utilizing their id from
+    // within the users array
     userData_[_userEOA] = User_({
       userName_: _userName,
       position_: _position,
@@ -157,7 +158,7 @@ contract Hub is LoggingErrors {
 
     LogUserAdded(_userEOA);
 
-    return true;*/
+    return true;
   }
 
   // CONSTANTS
@@ -165,13 +166,13 @@ contract Hub is LoggingErrors {
   /**
    * @return The array of users.
    */
-  /*function getAllUsers ()
+  function getAllUsers()
     external
     constant
     returns(address[])
   {
     return users_;
-  }*/
+  }
 
   /**
    * @param _id The id of the resource to retrieve.

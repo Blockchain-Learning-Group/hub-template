@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>BLG Hub</title>
+    <title>Hub</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -142,6 +142,59 @@
           <!-- END News Feed -->
       </div>
     </div>
+
+    <!-- User and Resource Forms -->
+    <div class="col-lg-12" style="padding: 10px;">
+      <div class="row">
+        <!-- Add User form -->
+        <div class="col-lg-6" style="padding: 10px;">
+
+          <h2>Add a User</h2>
+          <form class="form-inline">
+            <label class="sr-only" for="inlineFormInputGroup">Name</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width:100%">
+              <div class="input-group-addon">Name</div>
+              <input type="text" class="form-control" id="name" placeholder="Adam Lemmon">
+            </div>
+
+            <label class="sr-only" for="inlineFormInputGroup">Address</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width:100%">
+              <div class="input-group-addon">Address</div>
+              <input type="text" class="form-control" id="address" placeholder="0x1234567890123456789012345678901234567890">
+            </div>
+
+            <label class="sr-only" for="inlineFormInputGroup">Position</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width:100%">
+              <div class="input-group-addon">Position</div>
+              <input type="text" class="form-control" id="position" placeholder="Engineer">
+            </div>
+
+            <label class="sr-only" for="inlineFormInputGroup">Location</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width:100%">
+              <div class="input-group-addon">Location</div>
+              <input type="text" class="form-control" id="location" placeholder="London, UK">
+            </div>
+
+            <button class="btn btn-primary" id="addUser" style="width:100%; margin-right: auto; margin-left: auto">Submit</button>
+          </form>
+        </div>
+
+        <!-- Add Resource Form -->
+        <div class="col-lg-6" style="padding: 10px;">
+          <h2>Add a Resource</h2>
+          <form class="form-inline">
+            <label class="sr-only" for="inlineFormInputGroup">Resource</label>
+            <div class="input-group mb-2 mr-sm-2 mb-sm-0" style="width:100%">
+              <div class="input-group-addon">Resource</div>
+              <input type="text" class="form-control" id="resource" placeholder="https://blockchainlearninggroup.com">
+            </div>
+
+            <button class="btn btn-primary" id="addResource" style="width:100%; margin-right: auto; margin-left: auto">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
 
     <!-- Scroll to Top Button -->
     <a class="scroll-to-top rounded" href="#page-top">
