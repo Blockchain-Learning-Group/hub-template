@@ -57,8 +57,6 @@ contract Hub is LoggingErrors {
   /**
    * Events
    */
-   /*event LogResourceAdded(address user, string resourceUrl, uint blockNumber);*/
-   /*event LogUserAdded(address user);*/
 
   /**
    * @dev CONSTRUCTOR - Set the address of the _blgToken
