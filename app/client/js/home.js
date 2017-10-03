@@ -212,7 +212,7 @@ async function initializeApp() {
     // Init the token contract reference object, require contract abi and address
     window.token = await web3.eth.contract(tokenJson.abi).at(tokenAddress)
     console.log(window.token)
-
+   
   } else {
     console.error('Please deploy your token and update the tokenAddress at home.js#L14')
   }
@@ -227,7 +227,9 @@ async function initEtherConnection() {
   window.web3 = new Web3(
     new Web3.providers.HttpProvider('http://localhost:8545')
   )
-
+  
+  window.defaultAccount = web3.eth.accounts[0]
+ 
   // Quick check that web3 connection successful
   console.log('wbe3 Connected? ' + web3.isConnected())
 }
