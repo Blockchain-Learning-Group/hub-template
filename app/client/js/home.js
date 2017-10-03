@@ -228,6 +228,9 @@ async function initEtherConnection() {
     new Web3.providers.HttpProvider('http://localhost:8545')
   )
 
+  window.defaultAccount = web3.eth.accounts[0]
+
   // Quick check that web3 connection successful
-  console.log('wbe3 Connected? ' + web3.isConnected())
+  console.log('web3 Connected? ' + web3.isConnected())
+  console.log('Default Account: ' + defaultAccount)
 }
