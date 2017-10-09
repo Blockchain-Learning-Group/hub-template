@@ -14,7 +14,7 @@ const owner = web3.eth.accounts[0]
 mint()
 
 async function mint() {
-  const token = await Token.at(argv.token)
+  const token = await Token.deployed()
   let tx
   let user
 
