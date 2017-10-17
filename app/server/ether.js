@@ -1,7 +1,6 @@
 /*
  Backend interface with Ethereum via the web3 API.
- Instantiate contract references and load all relevant data.
- Listen for all events and store locally for client side access.
+ Example server side web3 usage.
  */
 
 // Cmd line args

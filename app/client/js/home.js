@@ -1,10 +1,8 @@
 /*
  Blockchain Learning Group's Community Hub Template.
- Client side interface.  Primarily listening for events in order to update the
- interface in near real-time.  All data loaded intially server side.
+ Admin interface initially to add user's to the hub enabling them to contribute.
+ Also monitor newsfeed of all token and hub contract events.
  */
-
-// const apiURL = 'http://localhost:8081/'
 
 // TODO Update with current token address and compile json data
 const tokenAddress = 'TODO'
@@ -203,7 +201,7 @@ $(document).ready(() => {
 })
 
 /**
- * Initialize the app, loading data primarily.
+ * Initialize the app, create web3 connection and loading data primarily.
  */
 async function initializeApp() {
   await initEtherConnection()

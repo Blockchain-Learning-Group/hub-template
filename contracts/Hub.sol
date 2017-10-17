@@ -44,12 +44,12 @@ contract Hub is LoggingErrors {
   address public owner_; // owner EOA
   address public token_; // token contract
 
-  // Array of resources ids, hash of the url
+  // Array of resources ids, keccak2556 hash of the url
   bytes32[] public resourceIds_;
   // Map the resource ids to its associated data
   mapping(bytes32 => Resource_) public resources_;
 
-  // Array of user ids
+  // Array of user ids, EOAs
   address[] public users_;
   // Lookup user info based on id
   mapping(address => User_) public userData_;
@@ -59,8 +59,8 @@ contract Hub is LoggingErrors {
    */
 
   /**
-   * @dev CONSTRUCTOR - Set the address of the _blgToken
-   * @param _token The blg token contract.
+   * @dev CONSTRUCTOR - Set the address of the _token
+   * @param _token The token contract.
    */
   function Hub(address _token) {
     token_ = _token;
@@ -89,7 +89,7 @@ contract Hub is LoggingErrors {
 
   /**
    * @dev Add a new user that may write to the hub.
-   * @param _userEOA User owner EOD, used as their id.
+   * @param _userEOA User owner EOA, used as their id.
    * @param _userName Screen or real name of user.
    * @param _position Professional position.
    * @param _location Geographic location.
