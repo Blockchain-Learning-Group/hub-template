@@ -4,10 +4,7 @@
   "license": "TBD",
   "private:": false,
   "dependencies": {
-    "bignumber.js": "^4.1.0",
-    "ethereumjs-abi": "^0.6.4",
     "express": "^4.15.4",
-    "solc": "^0.4.15",
     "truffle-contract": "^3.0.0",
     "web3": "0.20.0"
   },
